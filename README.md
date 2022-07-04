@@ -1,7 +1,7 @@
 Files:
-**station.csv**; Contains data that represents a station where users can pick up or return bikes.
-**trips.csv**; Data about individual bike trips
-**weather.csv**; Data about the weather on a specific day for certain zip codes/cities.
+**station.csv**; Contains data that represents a station where users can pick up or return bikes.\n
+**trips.csv**; Data about individual bike trips\n
+**weather.csv**; Data about the weather on a specific day for certain zip codes/cities.\n
 
 Tasks:
 
