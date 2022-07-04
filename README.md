@@ -1,4 +1,5 @@
 Files:
+
 **station.csv**; Contains data that represents a station where users can pick up or return bikes.
 
 **trips.csv**; Data about individual bike trips.
