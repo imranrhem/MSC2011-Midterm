@@ -3,6 +3,8 @@
 library(funModeling)
 library(tidyverse)
 library(Hmisc)
+library(stringr)
+library(dplyr)
 
 # Import weather dataset as a dataframe
 weather_data <- read.csv("weather.csv", header = TRUE, sep = ",")
@@ -12,7 +14,17 @@ glimpse(weather_data)
   # 1825 total observations
   # 15 variables
   # Data is in imperial measurements (F, miles, mph, inches)
-  
+
+# Replace T values in precipitation_inches with 0 and convert to numeric
+weather_data$precipitation_inches <- stringr::str_replace(weather_data$precipitation_inches, "T", "0")
+weather_data <- weather_data %>% mutate(precipitation_inches = as.numeric(precipitation_inches))
+
+
+# Replace empty values with "No Event" in events
+weather_data$events[weather_data$events == ""] <- "No Event"
+
+# Convert zip_code to character 
+weather_data$zip_code <- as.character(weather_data$zip_code)
 
 # Gain metrics on data types, zeroes, infinite numbers, and missing values
 print(status(weather_data))
