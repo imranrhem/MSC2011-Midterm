@@ -1,7 +1,7 @@
 # Cancelled Trips 
 
-install.packages("dplyr")
-load("dplyr")
+# install.packages("dplyr")
+library("dplyr")
 
 # Any trip with duration less than 2 minutes is likely a 'cancelled trip'. 
 # Find out the number of such trips, record the information for your report and 
