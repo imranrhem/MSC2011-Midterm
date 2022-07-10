@@ -22,6 +22,8 @@ trip_outliers<- rbind(trip_outliers, duration_outrows)
 # remove outliers from trip_data2 and store in new dataset
 trip_data3 <- trip_data2[-duration_outliers_rownum,]
 
+saveRDS(trip_data3, "trip_no_outliers.Rds")
+
 ################################################################################## 
 # weather data outliers 
 
