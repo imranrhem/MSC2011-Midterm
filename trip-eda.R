@@ -1,9 +1,9 @@
 # TRIP - EXPLORATORY DATA ANALYSIS 
 
 # install packages
-install.packages("tidyverse")
-install.packages("funModeling")
-install.packages("Hmisc")
+# install.packages("tidyverse")
+# install.packages("funModeling")
+# install.packages("Hmisc")
 
 # load packages
 library(funModeling) 
