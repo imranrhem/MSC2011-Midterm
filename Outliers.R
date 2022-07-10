@@ -6,21 +6,21 @@
 ################################################################################## 
 # trip data outliers 
 
-# # create a dataframe to store trip data outliers
-# trip_outliers <- data.frame()
-# 
-# # create a box plot for the trip data for numeric variables
-# # box plot for duration
-# boxplot(trip_data2$duration) # outliers present
-# # find the outliers in duration
-# duration_outliers <- boxplot.stats(trip_data2$duration)$out
-# # find row numbers for duration outliers 
-# duration_outliers_rownum <- which(trip_data2$duration %in% c(duration_outliers))
-# duration_outrows <- trip_data2[duration_outliers_rownum,]
-# # add the outliers to the trip outliers_dataset
-# trip_outliers<- rbind(trip_outliers, duration_outrows)
-# # remove outliers from trip_data2 and store in new dataset
-# trip_data3 <- trip_data2[-duration_outliers_rownum,]
+# create a dataframe to store trip data outliers
+trip_outliers <- data.frame()
+
+# create a box plot for the trip data for numeric variables
+# box plot for duration
+boxplot(trip_data2$duration) # outliers present
+# find the outliers in duration
+duration_outliers <- boxplot.stats(trip_data2$duration)$out
+# find row numbers for duration outliers
+duration_outliers_rownum <- which(trip_data2$duration %in% c(duration_outliers))
+duration_outrows <- trip_data2[duration_outliers_rownum,]
+# add the outliers to the trip outliers_dataset
+trip_outliers<- rbind(trip_outliers, duration_outrows)
+# remove outliers from trip_data2 and store in new dataset
+trip_data3 <- trip_data2[-duration_outliers_rownum,]
 
 ################################################################################## 
 # weather data outliers 
@@ -29,6 +29,7 @@ weather_data <- read.csv("weather.csv", header = TRUE, sep = ",")
 
 # create a dataframe from store weather data outliers 
 weather_outliers <- data.frame()
+# create a dataframe to store the original data in 
 weather_data2 <- weather_data
 
 # go through every coloumn and print it out
