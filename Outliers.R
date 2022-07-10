@@ -6,8 +6,6 @@
 ################################################################################## 
 # trip data outliers 
 
-# load new trip_data with trips < 2 minutes removed
-
 # create a dataframe to store trip data outliers
 trip_outliers <- data.frame()
 
