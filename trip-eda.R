@@ -29,6 +29,10 @@ trip_eda <- function(trip_data)
   # ~85% subscriber
   # ~15% customer
   
+  # export plots
+  freq(trip_data, path_out = ".")
+  
+  
   print(profiling_num(trip_data))
   # right skew: duration (also high variation ceof, and std dev)
   
