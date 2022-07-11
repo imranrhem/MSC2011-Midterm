@@ -42,6 +42,9 @@ trip_eda <- function(trip_data)
   # end_station_id: left skewed 
   # bike_id: unimodal, may have outliers
   
+  #export plots
+  plot_num(trip_data, path_out = ".")
+  
   describe(trip_data)
   # 1493 missing zip_code
 }
