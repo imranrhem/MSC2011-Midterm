@@ -6,6 +6,8 @@
 ################################################################################## 
 # trip data outliers 
 
+trip_data2 <- readRDS("trips_2minutes.RDS")
+
 # create a dataframe to store trip data outliers
 trip_outliers <- data.frame()
 
