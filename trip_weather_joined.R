@@ -48,6 +48,6 @@ wt_events <- wt_joined %>%
 wt_numerical <- dplyr::select(wt_joined,c(duration,max_temperature_f:cloud_cover))
 
 # Create correlation plot
-wt_corr <- cor(wt_numerical)
+wt_corr <- cor(wt_numerical, use = "complete.obs")
 corrplot(wt_corr)
 
