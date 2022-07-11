@@ -45,9 +45,9 @@ wt_events <- wt_joined %>%
   summarize(Trips = n())
 
 # Create a new data set only containing the numerical weather measurements
-wt_numerical <- dplyr::select(wt_joined,c(duration,max_temperature_f:cloud_cover))
+wt_numerical <- dplyr::select(wt_joined,c(max_temperature_f:cloud_cover))
 
 # Create correlation plot
 wt_corr <- cor(wt_numerical, use = "complete.obs")
-corrplot(wt_corr)
+corrplot(wt_corr, method = "number", order = "AOE")
 
