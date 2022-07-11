@@ -19,7 +19,6 @@ glimpse(weather_data)
 weather_data$precipitation_inches <- stringr::str_replace(weather_data$precipitation_inches, "T", "0")
 weather_data <- weather_data %>% mutate(precipitation_inches = as.numeric(precipitation_inches))
 
-
 # Replace empty values with "No Event" in events
 weather_data$events[weather_data$events == ""] <- "No Event"
 
@@ -64,3 +63,5 @@ plot_num(weather_data)
 
 describe(weather_data)
   # Consistent observations with above
+
+saveRDS(weather_data, "weather_processed.rds")
