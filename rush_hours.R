@@ -43,6 +43,7 @@ barplot(morning_starting,
         cex.lab = 1.3,
         cex.axis = 1,
         cex.names = 0.6,
+        ylim = c(0,6500),
         las = 2)
 
 # Create a table containing the 10 busiest ending station in order
@@ -56,6 +57,7 @@ barplot(morning_ending,
         cex.lab = 1.3,
         cex.axis = 1.2,
         cex.names = 1.2,
+        ylim = c(0,3500),
         las = 2)
 
 # Create a new dataframe with only the trips during the evening rush hour
@@ -72,6 +74,7 @@ barplot(evening_starting,
         cex.lab = 1.3,
         cex.axis = 1.2,
         cex.names = 1.2,
+        ylim = c(0,2000),
         las = 2)
 
 # Create a table containing the 10 busiest ending station in order
@@ -85,6 +88,7 @@ barplot(evening_ending,
         cex.lab = 1.3,
         cex.axis = 1.2,
         cex.names = 1.2,
+        ylim = c(0,7000),
         las = 2)
 
 ##### Determine the busiest 10 stations during weekends
@@ -97,13 +101,26 @@ weekend_starting <- table(weekend_trips$start_station_name)
 weekend_starting <- sort(weekend_starting, decreasing = T, na.rm = T)[1:10]
 
 # Plot the 10 busiest starting stations during the weekend
-barplot(evening_starting, 
+barplot(weekend_starting, 
         main = "Ten Busiest Starting Stations During Evening Rush Hour",
         ylab = "Number of Trips",
         cex.lab = 1.3,
         cex.axis = 1.2,
         cex.names = 1.2,
+        ylim = c(0,2500),
         las = 2)
 
-# Plot the 10 busiest ending stations during the wekeend
+# Make a table including the 10 most frequent ending stations on weekends
+weekend_ending <- table(weekend_trips$end_station_name)
+weekend_ending <- sort(weekend_ending, decreasing = T, na.rm = T)[1:10]
+
+# Plot the 10 busiest ending stations during the weekend
+barplot(weekend_ending, 
+        main = "Ten Busiest Ending Stations During Evening Rush Hour",
+        ylab = "Number of Trips",
+        cex.lab = 1.3,
+        cex.axis = 1.2,
+        cex.names = 1.2,
+        ylim = c(0,2500),
+        las = 2)
 
