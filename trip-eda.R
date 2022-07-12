@@ -14,6 +14,7 @@ library(Hmisc)
 trip_data <- read.csv("trip.csv")
 
 # setup basic_eda function 
+
 trip_eda <- function(trip_data)
 {
   glimpse(trip_data) 
