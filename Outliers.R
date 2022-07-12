@@ -6,11 +6,8 @@
 ################################################################################## 
 # trip data outliers 
 
-<<<<<<< HEAD
-=======
 trip_data2 <- readRDS("trips_2minutes.RDS")
 
->>>>>>> 0336eb71e6ce578fb0c5295e3c0ab2ba85a0fe9f
 # create a dataframe to store trip data outliers
 trip_outliers <- data.frame()
 
@@ -26,11 +23,8 @@ duration_outrows <- trip_data2[duration_outliers_rownum,]
 trip_outliers<- rbind(trip_outliers, duration_outrows)
 # remove outliers from trip_data2 and store in new dataset
 trip_data3 <- trip_data2[-duration_outliers_rownum,]
-<<<<<<< HEAD
-=======
 
-saveRDS(trip_data3, "trip_no_outliers.Rds")
->>>>>>> 0336eb71e6ce578fb0c5295e3c0ab2ba85a0fe9f
+saveRDS(trip_data3, "trip_no_outliers.rds")
 
 ################################################################################## 
 # weather data outliers 
@@ -39,7 +33,6 @@ weather_data <- readRDS("weather_processed.rds")
 
 # create a dataframe from store weather data outliers 
 weather_outliers <- data.frame()
-# create a dataframe to store the original data in 
 weather_data2 <- weather_data
 
 # go through every coloumn and print it out
