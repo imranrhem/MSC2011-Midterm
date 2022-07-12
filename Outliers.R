@@ -131,7 +131,6 @@ boxplot(weather_data$precipitation_inches) # heavily skewed
 #Apply log transformation
 log_precip <- log(weather_data$precipitation_inches)
 hist(log_precip)
-boxplot(log_precip)
 
 saveRDS(weather_data, "weather_no_outliers.rds")
 
