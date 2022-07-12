@@ -36,7 +36,7 @@ print(status(weather_data))
 
 # Analyze categorical variables
 freq(weather_data) 
-  # Equal distribution entires for all 5 cities
+  # Equal distribution entries for all 5 cities
   # 1473 NULL values in events variable
   # precipitation_inches is treated as a categorical variable due to T 
 
