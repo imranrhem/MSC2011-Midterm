@@ -4,7 +4,7 @@ library(dplyr)
 library(lubridate)
 library(corrplot)
 #### Import weather data
-weather <- read.csv("weather.csv")
+weather <- readRDS("weather_no_outliers.rds")
 
 # Replace T values in precipitation_inches with 0 and convert to numeric
 weather$precipitation_inches <- stringr::str_replace(weather$precipitation_inches, "T", "0")
@@ -44,13 +44,31 @@ table(wt_joined$city)
 wt_events <- wt_joined %>%
   group_by(city) %>%
   summarise(events = table(events))
-  # Should not use weather events as there are naturally more days with no events
+  # Should not use weather events as there are naturally more days with no events, and cities s
 wt_events
   
 # Create a new data set only containing the numerical weather measurements
-wt_numerical <- dplyr::select(wt_events,c(max_temperature_f:cloud_cover))
+wt_numerical <- dplyr::select(weather,c(max_temperature_f:cloud_cover))
 
 # Create correlation plot
 wt_corr <- cor(wt_numerical, use = "complete.obs")
-corrplot(wt_corr, method = "number", order = "AOE")
+
+# Rename columns and rows for plot
+colnames(wt_corr) <- c("Max Temperature (F)", "Mean Temperature (F)", "Min Temperature (F)"
+                  , "Max Visibility (miles)", "Mean Visibility (miles)", "Min Visibility (miles)",
+                  "Max Wind Speed (mph)", "Mean Wind Speed (mph)", "Max Gust Speed (mph)",
+                  "Precipitation (inches)", "Cloud Cover")
+rownames(wt_corr) <- c("Max Temperature (F)", "Mean Temperature (F)", "Min Temperature (F)"
+                       , "Max Visibility (miles)", "Mean Visibility (miles)", "Min Visibility (miles)",
+                       "Max Wind Speed (mph)", "Mean Wind Speed (mph)", "Max Gust Speed (mph)",
+                       "Precipitation (inches)", "Cloud Cover")
+# Create corrplot
+corrplot(wt_corr, method = "circle", 
+         order = "original", 
+         tl.col = "black", 
+         col = COL2("RdBu", 10),
+         tl.cex = 0.8,
+         tl.srt = 45,
+         cl.cex = 0.8,
+         cl.offset = 1.4)
 
