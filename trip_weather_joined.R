@@ -33,15 +33,19 @@ station <- read.csv("station.csv")
 #### Join weather and join tables
 
 # Join station to trips using name and start station to get cities
-ts_joined <- inner_join(station,trip, by = c("name" = "start_station_name"))
+ts_joined <- inner_join(station,trip, by = c("id" = "start_station_id"))
 
 # Join weather to ts_joined by date and city (ensures there are only weather reports for the same day and location)                      
 wt_joined <- inner_join(ts_joined, weather, by = c("start_date" = "date", "city" = "city"))
 table(wt_joined$events)
+table(wt_joined$city)
 
 # Determine the number of trips for each event (skewed as there are naturally more events)
 wt_events <- wt_joined %>%
-  group_by(events)
+  group_by(city) %>%
+  summarise(events = table(events))
+  # Should not use weather events as there are naturally more days with no events
+wt_events
   
 # Create a new data set only containing the numerical weather measurements
 wt_numerical <- dplyr::select(wt_events,c(max_temperature_f:cloud_cover))
