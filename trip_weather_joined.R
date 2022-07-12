@@ -4,7 +4,7 @@ library(dplyr)
 library(lubridate)
 library(corrplot)
 #### Import weather data
-weather <- readRDS("weather_no_outliers.rds")
+weather <- read.csv("weather.csv")
 
 # Replace T values in precipitation_inches with 0 and convert to numeric
 weather$precipitation_inches <- stringr::str_replace(weather$precipitation_inches, "T", "0")
@@ -41,11 +41,10 @@ table(wt_joined$events)
 
 # Determine the number of trips for each event (skewed as there are naturally more events)
 wt_events <- wt_joined %>%
-  group_by(events) %>%
-  summarize(Trips = n())
-
+  group_by(events)
+  
 # Create a new data set only containing the numerical weather measurements
-wt_numerical <- dplyr::select(wt_joined,c(max_temperature_f:cloud_cover))
+wt_numerical <- dplyr::select(wt_events,c(max_temperature_f:cloud_cover))
 
 # Create correlation plot
 wt_corr <- cor(wt_numerical, use = "complete.obs")
