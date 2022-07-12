@@ -44,8 +44,7 @@ table(wt_joined$city)
 wt_events <- wt_joined %>%
   group_by(city) %>%
   summarise(events = table(events))
-  # Should not use weather events as there are naturally more days with no events, and cities s
-wt_events
+  # Should not use weather events as there are naturally more days with no events, and cities follow the same ratio
   
 # Create a new data set only containing the numerical weather measurements
 wt_numerical <- dplyr::select(weather,c(max_temperature_f:cloud_cover))
