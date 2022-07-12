@@ -19,6 +19,42 @@ table(trips$start_station_name)
 
 #### Determine rush hours through all weekdays
 
+monday_trips <- trips[trips$weekday == "Monday",]
+class(monday_trips$start_date)
+monday_trips$hour = as.numeric(format(monday_trips$start_date, "%H"))
+hist(monday_trips$hour)
+
+# Determine rush hours for Tuesdays
+tuesday_trips <- trips[trips$weekday == "Tuesday",]
+class(tuesday_trips$start_date)
+tuesday_trips$hour = as.numeric(format(tuesday_trips$start_date, "%H"))
+hist(tuesday_trips$hour)
+# Create new column that takes the "hour" the trip begin at
+weekday_trips$hour = as.numeric(format(weekday_trips$start_date, "%H"))
+
+# Determine rush hours for Wednesdays
+wednesday_trips <- trips[trips$weekday == "Wednesday",]
+class(wednesday_trips$start_date)
+wednesday_trips$hour = as.numeric(format(wednesday_trips$start_date, "%H"))
+hist(wednesday_trips$hour)
+# Plot hours on a histogram for visualization
+hist(weekday_trips$hour, main = "Numer of Trips Throughout Weekdays", xlab = "Time in Hours")
+# Rush hours are 8:00 (8am)
+# And 17:00 5(pm)
+
+# Determine rush hours for Thursdays
+thursday_trips <- trips[trips$weekday == "Thursday",]
+class(thursday_trips$start_date)
+thursday_trips$hour = as.numeric(format(thursday_trips$start_date, "%H"))
+hist(thursday_trips$hour)
+#### Determine the busiest 10 starting and ending stations during rush hours on weekdays
+
+# Determine rush hours for Friday
+Friday_trips <- trips[trips$weekday == "Friday",]
+class(Friday_trips$start_date)
+Friday_trips$hour = as.numeric(format(Friday_trips$start_date, "%H"))
+hist(Friday_trips$hour)
+
 # Build new dataframe with only weekdays
 weekday_trips <- trips[trips$weekday == "Monday" | trips$weekday == "Tuesday" | 
                        trips$weekday == "Wednesday" | trips$weekday == "Thursday" |
@@ -33,6 +69,7 @@ hist(weekday_trips$hour, main = "Numer of Trips Throughout Weekdays", xlab = "Ti
   # And 17:00 5(pm)
 
 #### Determine the busiest 10 starting and ending stations during rush hours on weekdays
+
 # Create new dataframe with only the trips during the morning rush hour
 morning_rush <- weekday_trips[weekday_trips$hour == 8,]
 
