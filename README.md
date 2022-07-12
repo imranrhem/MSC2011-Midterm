@@ -28,7 +28,7 @@ Tasks:
   -Imran
 
 •	Calculate the average utilization of bikes for each month (total time used/total time in month).
-  -Imran
+  -Archana
 
 •	The team assumes that weather conditions probably have an impact on the bike rental patterns, but they are not sure whether they should use temperature, weather events, visibility or other weather measurements available. Help them decide by creating a new dataset combining trip data with the weather data. (Note that the weather data is available for each city and date. Join your datasets accordingly). Create a correlation matrix for the new dataset using the cor() function from the corrplot package. Flag the highest correlations for the data science team.
   -Imran
