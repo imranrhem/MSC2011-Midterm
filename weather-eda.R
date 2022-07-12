@@ -21,6 +21,7 @@ weather_data <- weather_data %>% mutate(precipitation_inches = as.numeric(precip
 
 # Replace empty values with "No Event" in events
 weather_data$events[weather_data$events == ""] <- "No Event"
+weather_data$events[weather_data$events == "rain" | weather_data$events == "Rain-Thunderstorm"] <- "Rain"
 
 # Convert zip_code to character 
 weather_data$zip_code <- as.character(weather_data$zip_code)
