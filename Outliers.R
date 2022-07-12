@@ -35,23 +35,6 @@ weather_data <- readRDS("weather_processed.rds")
 weather_outliers <- data.frame()
 weather_data2 <- weather_data
 
-# go through every coloumn and print it out
-# for(i in 2:10) {
-#   print(names(weather_data)[i])
-#   # create a box plot for the weather data for numeric variables
-#   boxplot(weather_data[ , i])
-#   column_outliers <- boxplot.stats(weather_data2[,i])$out
-#   print(column_outliers)
-#   # find row numbers for mean_temperature_f outliers
-#   column_outliers_rownum <- which(weather_data2[,i] %in% c(column_outliers))
-#   print(column_outliers_rownum)
-#   column_outrows <- weather_data2[column_outliers_rownum,]
-#   # add the outliers to the weather_outliers dataset if not already present
-#   weather_outliers<- rbind(weather_outliers, column_outrows)
-#   # remove outliers from weather_data and store in new dataset
-#   weather_data2 <- weather_data2[-column_outliers_rownum,]
-# }
-
 # create a box plot for the weather data for numeric variables
 # box plot for mean_temperature_f
 boxplot(weather_data$mean_temperature_f) # no outliers present
