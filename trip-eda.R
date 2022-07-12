@@ -1,10 +1,5 @@
 # TRIP - EXPLORATORY DATA ANALYSIS 
 
-# install packages
-install.packages("tidyverse")
-install.packages("funModeling")
-install.packages("Hmisc")
-
 # load packages
 library(funModeling) 
 library(tidyverse) 
@@ -30,9 +25,9 @@ trip_eda <- function(trip_data)
   # ~85% subscriber
   # ~15% customer
   
+
   # export plots
   freq(trip_data, path_out = ".")
-  
   
   print(profiling_num(trip_data))
   # right skew: duration (also high variation ceof, and std dev)
@@ -43,6 +38,7 @@ trip_eda <- function(trip_data)
   # end_station_id: left skewed 
   # bike_id: unimodal, may have outliers
   
+
   #export plots
   plot_num(trip_data, path_out = ".")
   
