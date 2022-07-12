@@ -65,6 +65,7 @@ morning_rush <- weekday_trips[weekday_trips$hour == 8,]
 # Create a table containing the 10 busiest starting station in order
 morning_starting <- table(morning_rush$start_station_id)
 morning_starting <- sort(morning_starting, decreasing = T, na.rm = T)[1:10]
+ms_proportion <- sum(morning_starting)/nrow(trips)
 
 # Plot the 10 busiest starting station in the morning rush hour
 barplot(morning_starting, 
@@ -79,6 +80,9 @@ barplot(morning_starting,
 # Create a table containing the 10 busiest ending station in order
 morning_ending <- table(morning_rush$end_station_id)
 morning_ending <- sort(morning_ending, decreasing = T, na.rm = T)[1:10]
+
+# Determine the proportion of all trips that the stations make up
+me_proportion <- sum(morning_ending)/nrow(trips)
 
 # Plot the 10 busiest ending stations in the morning rush hour
 barplot(morning_ending, 
@@ -97,6 +101,9 @@ evening_rush <- weekday_trips[weekday_trips$hour == 17,]
 evening_starting <- table(evening_rush$start_station_id)
 evening_starting <- sort(evening_starting, decreasing = T, na.rm = T)[1:10]
 
+# Determine the proportion of all trips that the stations make up
+es_proportion <- sum(evening_starting)/nrow(trips)
+
 # Plot the 10 busiest starting station in the evening rush hour
 barplot(evening_starting, 
         main = "Ten Busiest Starting Stations During Evening Rush Hour",
@@ -110,6 +117,9 @@ barplot(evening_starting,
 # Create a table containing the 10 busiest ending station in order
 evening_ending <- table(evening_rush$end_station_id)
 evening_ending <- sort(evening_ending, decreasing = T, na.rm = T)[1:10]
+
+# Determine the proportion of all trips that the stations make up
+ee_proportion <- sum(evening_ending)/nrow(trips)
 
 # Plot the 10 busiest ending stations in the evening rush hour
 barplot(evening_ending, 
