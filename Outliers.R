@@ -6,6 +6,11 @@
 ################################################################################## 
 # trip data outliers 
 
+<<<<<<< HEAD
+=======
+trip_data2 <- readRDS("trips_2minutes.RDS")
+
+>>>>>>> 0336eb71e6ce578fb0c5295e3c0ab2ba85a0fe9f
 # create a dataframe to store trip data outliers
 trip_outliers <- data.frame()
 
@@ -21,11 +26,16 @@ duration_outrows <- trip_data2[duration_outliers_rownum,]
 trip_outliers<- rbind(trip_outliers, duration_outrows)
 # remove outliers from trip_data2 and store in new dataset
 trip_data3 <- trip_data2[-duration_outliers_rownum,]
+<<<<<<< HEAD
+=======
+
+saveRDS(trip_data3, "trip_no_outliers.Rds")
+>>>>>>> 0336eb71e6ce578fb0c5295e3c0ab2ba85a0fe9f
 
 ################################################################################## 
 # weather data outliers 
 
-weather_data <- read.csv("weather.csv", header = TRUE, sep = ",")
+weather_data <- readRDS("weather_processed.rds")
 
 # create a dataframe from store weather data outliers 
 weather_outliers <- data.frame()
@@ -79,40 +89,14 @@ weather_outliers<- rbind(weather_outliers, maxtemp_outrows)
 weather_data <- weather_data[-maxtemp_outliers_rownum,]
 
 # box plot for mean_visibility_miles
-boxplot(weather_data$mean_visibility_miles) # outliers present
-# find the outliers in mean_visibility_miles
-mean_visibility_outliers <- boxplot.stats(weather_data$mean_visibility_miles)$out
-# find row numbers for mean_visibility_miles outliers
-mean_visibility_outliers_rownum <- which(weather_data$mean_visibility_miles %in% c(mean_visibility_outliers))
-mean_visibility_outrows <- weather_data[mean_visibility_outliers_rownum,]
-# add the outliers to the weather_outliers dataset
-weather_outliers<- rbind(weather_outliers, mean_visibility_outrows)
-# remove outliers from weather_data and store rows without outliers in new dataframe
-weather_data <- weather_data[-mean_visibility_outliers_rownum,]
+boxplot(weather_data$mean_visibility_miles) # outliers present, but IQR is 0, ignore
 
 # box plot for min_visibility_miles
-boxplot(weather_data$min_visibility_miles) # outliers present
-# find the outliers in min_visibility_miles
-min_visibility_outliers <- boxplot.stats(weather_data$min_visibility_miles)$out
-# find row numbers for min_visibility_miles outliers
-min_visibility_outliers_rownum <- which(weather_data$min_visibility_miles %in% c(min_visibility_outliers))
-min_visibility_outrows <- weather_data[min_visibility_outliers_rownum,]
-# add the outliers to the weather_outliers dataset
-weather_outliers<- rbind(weather_outliers, min_visibility_outrows)
-# remove outliers from weather_data and store rows without outliers in new dataframe
-weather_data <- weather_data[-min_visibility_outliers_rownum,]
+boxplot(weather_data$min_visibility_miles) # outliers present, but IQR is 0, ignore
 
 # box plot for max_visibility_miles
-boxplot(weather_data$max_visibility_miles) # outliers present
-# find the outliers in max_visibility_miles
-max_visibility_outliers <- boxplot.stats(weather_data$max_visibility_miles)$out
-# find row numbers for max_visibility_miles outliers
-max_visibility_outliers_rownum <- which(weather_data$max_visibility_miles %in% c(max_visibility_outliers))
-max_visibility_outrows <- weather_data[max_visibility_outliers_rownum,]
-# add the outliers to the weather_outliers dataset
-weather_outliers<- rbind(weather_outliers, max_visibility_outrows)
-# remove outliers from weather_data and store rows without outliers in new dataframe
-weather_data <- weather_data[-max_visibility_outliers_rownum,]
+boxplot(weather_data$max_visibility_miles) # outliers present, but distribution is one sided, ignore
+
 
 # box plot for mean_wind_speed_mph
 boxplot(weather_data$mean_wind_speed_mph) # outliers present
@@ -150,5 +134,8 @@ weather_outliers<- rbind(weather_outliers, mean_gust_outrows)
 # remove outliers from weather_data and store rows without outliers in new dataframe
 weather_data <- weather_data[-mean_gust_outliers_rownum,]
 
+# box plot for precipitation_inches
+boxplot(weather_data$precipitation_inches) # outliers present, but heavily skewed and removal of outliers would remove entire distribution
 
+saveRDS(weather_data, "weather_no_outliers.rds")
 
