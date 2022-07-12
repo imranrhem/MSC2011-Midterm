@@ -85,11 +85,10 @@ weather_data <- weather_data[-maxtemp_outliers_rownum,]
 boxplot(weather_data$mean_visibility_miles) # outliers present, but IQR is 0, ignore
 
 # box plot for min_visibility_miles
-boxplot(weather_data$min_visibility_miles) # outliers present, but IQR is 0, ignore
+boxplot(weather_data$min_visibility_miles) # outliers present, but distribution is one sided, ignore
 
 # box plot for max_visibility_miles
-boxplot(weather_data$max_visibility_miles) # outliers present, but distribution is one sided, ignore
-
+boxplot(weather_data$max_visibility_miles) # outliers present, but IQR is 0, ignore
 
 # box plot for mean_wind_speed_mph
 boxplot(weather_data$mean_wind_speed_mph) # outliers present
@@ -104,31 +103,35 @@ weather_outliers<- rbind(weather_outliers, mean_wind_outrows)
 weather_data <- weather_data[-mean_wind_outliers_rownum,]
 
 # box plot for max_wind_speed_mph
-boxplot(weather_data$max_wind_speed_mph) # outliers present
+boxplot(weather_data$max_wind_Speed_mph) # outliers present
 # find the outliers in max_wind_speed_mph
-max_wind_outliers <- boxplot.stats(weather_data$max_wind_speed_mph)$out
+max_wind_outliers <- boxplot.stats(weather_data$max_wind_Speed_mph)$out
 # find row numbers for max_wind_speed_mph outliers
-max_wind_outliers_rownum <- which(weather_data$max_wind_speed_mph %in% c(max_wind_outliers))
+max_wind_outliers_rownum <- which(weather_data$max_wind_Speed_mph %in% c(max_wind_outliers))
 max_wind_outrows <- weather_data[max_wind_outliers_rownum,]
 # add the outliers to the weather_outliers dataset
 weather_outliers<- rbind(weather_outliers, max_wind_outrows)
 # remove outliers from weather_data and store rows without outliers in new dataframe
 weather_data <- weather_data[-max_wind_outliers_rownum,]
 
-# box plot for mean_gust_speed_mph
-boxplot(weather_data$mean_gust_speed_mph) # outliers present
-# find the outliers in mean_gust_speed_mph
-mean_gust_outliers <- boxplot.stats(weather_data$mean_gust_speed_mph)$out
-# find row numbers for mean_gust_speed_mph outliers
-mean_gust_outliers_rownum <- which(weather_data$mean_gust_speed_mph %in% c(mean_gust_outliers))
-mean_gust_outrows <- weather_data[mean_gust_outliers_rownum,]
+# box plot for max_gust_speed_mph
+boxplot(weather_data$max_gust_speed_mph) # outliers present
+# find the outliers in max_gust_speed_mph
+max_gust_outliers <- boxplot.stats(weather_data$max_gust_speed_mph)$out
+# find row numbers for max_gust_speed_mph outliers
+max_gust_outliers_rownum <- which(weather_data$max_gust_speed_mph %in% c(max_gust_outliers))
+max_gust_outrows <- weather_data[max_gust_outliers_rownum,]
 # add the outliers to the weather_outliers dataset
-weather_outliers<- rbind(weather_outliers, mean_gust_outrows)
+weather_outliers<- rbind(weather_outliers, max_gust_outrows)
 # remove outliers from weather_data and store rows without outliers in new dataframe
-weather_data <- weather_data[-mean_gust_outliers_rownum,]
+weather_data <- weather_data[-max_gust_outliers_rownum,]
 
 # box plot for precipitation_inches
-boxplot(weather_data$precipitation_inches) # outliers present, but heavily skewed and removal of outliers would remove entire distribution
+boxplot(weather_data$precipitation_inches) # heavily skewed
+#Apply log transformation
+log_precip <- log(weather_data$precipitation_inches)
+hist(log_precip)
+boxplot(log_precip)
 
 saveRDS(weather_data, "weather_no_outliers.rds")
 
