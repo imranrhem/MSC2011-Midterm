@@ -140,6 +140,9 @@ weekend_trips <- trips[trips$weekday == "Saturday" | trips$weekday == "Sunday",]
 weekend_starting <- table(weekend_trips$start_station_id)
 weekend_starting <- sort(weekend_starting, decreasing = T, na.rm = T)[1:10]
 
+# Determine the proportion of all trips that the stations make up
+ws_proportion <- sum(weekend_starting)/nrow(trips)
+
 # Plot the 10 busiest starting stations during the weekend
 barplot(weekend_starting, 
         main = "Ten Busiest Starting Stations During Weekends",
@@ -154,6 +157,9 @@ barplot(weekend_starting,
 weekend_ending <- table(weekend_trips$end_station_id)
 weekend_ending <- sort(weekend_ending, decreasing = T, na.rm = T)[1:10]
 
+# Determine the proportion of all trips that the stations make up
+ws_proportion <- sum(weekend_starting)/nrow(trips)
+
 # Plot the 10 busiest ending stations during the weekend
 barplot(weekend_ending, 
         main = "Ten Busiest Ending Stations During Weekends",
@@ -163,4 +169,5 @@ barplot(weekend_ending,
         cex.names = 1.2,
         ylim = c(0,2500),
         las = 2)
-
+# Determine the proportion of all trips that the stations make up
+we_proportion <- sum(weekend_ending)/nrow(trips)
